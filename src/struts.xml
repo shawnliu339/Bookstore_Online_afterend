@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+
+	<package name="admin_default" extends="struts-default">
+		<global-results>
+			<result name="error">/admin/book_error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+	</package>
+
+	<package name="admin" namespace="/admin" extends="admin_default">
+		<default-action-ref name="login" />
+		<action name="login" class="com.ncut.bookshop.action.LoginAction">
+			<result name="input" type="redirect">/admin/login.jsp</result>
+			<result type="redirectAction">book_list</result>
+		</action>
+		<action name="book_list" class="com.ncut.bookshop.action.bookAction"
+			method="list">
+			<result name="list">/admin/book_list.jsp</result>
+		</action>
+		<action name="book_*" class="com.ncut.bookshop.action.bookAction"
+			method="{1}">
+			<result>/admin/book_success.jsp</result>
+			<result name="input">/admin/book_{1}.jsp</result>
+		</action>
+		<action name="guestbook_*" class="com.ncut.bookshop.action.GuestbookAction"
+			method="{1}">
+			<result>/admin/guestbook_success.jsp</result>
+			<result name="list">/admin/guestbook_list.jsp</result>
+			<result name="input">/admin/guestbook_{1}.jsp</result>
+		</action>
+		<action name="remittance_*" class="com.ncut.bookshop.action.RemittanceAction"
+			method="{1}">
+			<result>/admin/remittance_success.jsp</result>
+			<result name="list">/admin/remittance_list.jsp</result>
+			<result name="input">/admin/remittance_{1}.jsp</result>
+		</action>
+	</package>
+</struts>

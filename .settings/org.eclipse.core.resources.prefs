@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//WebRoot/admin/head.jsp=UTF-8
+encoding//WebRoot/admin/tail.jsp=UTF-8
+encoding//src/com/ncut/bookshop/model/User.java=UTF-8
+encoding//src/com/ncut/bookshop/util/ConnectionFactory.java=UTF-8
